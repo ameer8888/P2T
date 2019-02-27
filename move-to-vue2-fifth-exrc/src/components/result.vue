@@ -1,5 +1,6 @@
 <template>
     <div>
+        
         <textarea v-model="text">
             
         </textarea>
@@ -8,6 +9,7 @@
 
 <script>
 import {mapState,mapActions} from 'vuex';
+import VueLoadingButton from 'vue-loading-button';
 
 export default {
     data() {
@@ -16,14 +18,11 @@ export default {
         }
     },
     props:['text'],
-    computed: {   
-
-    },
     methods: {
         ...mapActions(['setStatus']),
       
-
-    }
+    },
+    components: {VueLoadingButton}
 }
 </script>
 <style>
