@@ -5,7 +5,8 @@
                 <input class="input is-rounded is-primary" type="text" placeholder="filter convoies" v-model="search">
             </div>
         </div>
-        <div class="columns">
+        <record></record>
+        <!--<div class="columns">
                 <div class="column is-8 is-offset-2">
                     <convoy-table :properties="convoyBrief"
                                     :data="briefedConvoies"
@@ -21,6 +22,7 @@
                 </convoy-description>
             </div>
         </div>
+    -->
     </div>
 </template>
 
@@ -28,11 +30,12 @@
 import axios from 'axios';
 import ConvoyTable from '../components/ConvoyTable.vue';
 import ConvoyDescription from '../components/ConvoyDescription.vue';
+import record from '../components/record.vue';
 import { mapState } from 'vuex';
 
 export default {
   name: 'home',
-  components: { ConvoyTable, ConvoyDescription },
+  components: { ConvoyTable, ConvoyDescription, record },
   data () {
     return {
         search: ''
