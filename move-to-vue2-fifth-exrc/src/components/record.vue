@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id ="record">
         <div class="input-single">
             <textarea id="note
             -textarea" placeholder="Here will be your recorded note" rows="6" v-model="noteTextarea"></textarea>
