@@ -9,7 +9,8 @@ const store = new Vuex.Store({
         convoies: [],
         convoyBrief: [],
         convoyProp: [],
-        selectedConvoy: undefined
+        selectedConvoy: undefined,
+        isUploaded:false,
     },
     mutations: {
         setConvoies(state, convList) {
@@ -26,6 +27,9 @@ const store = new Vuex.Store({
         },
         setProps(state, propList) {
             state.convoyProp = propList;
+        },
+        setStatus(state, status) {
+            state.isUploaded = status;
         }
     },
     actions: {
@@ -36,7 +40,10 @@ const store = new Vuex.Store({
                                                      .catch(err => alert(err));
             axios.get("/src/assets/convoyProp.json").then(({data}) =>  commit('setProps', data))
                                                     .catch(err => alert(err));
-        }
+        },
+        setStatus({ commit },status){
+            commit('setStatus',status);
+        },
     }
 })
 
