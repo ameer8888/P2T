@@ -21,12 +21,8 @@
             
                     </div>
                     <p>{{recordingStatus}}</p>
-
-
             </div>
         </div>
-        
-
     </div>
 </template>
 
@@ -62,7 +58,7 @@ export default {
     // Start listening. You can call this here, or attach this call to an event, button, etc.
     annyang.start();
     }
-//-----------------------------------------------
+
     this.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     this.recognition = new SpeechRecognition();
     this.recognition.addEventListener('result', (event) => {

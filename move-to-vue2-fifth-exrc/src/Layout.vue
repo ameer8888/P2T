@@ -22,16 +22,13 @@
                            <section class="icon"><img src="./img/logoProjWhite.png" style="height: 200px; width: 200px;"><span class="title">Typing made easy...</span></section>  
                         </div>
                         <div class="page" id="p2">
-                          <section class="icon fa fa-keyboard-o"><span class="title">Type</span></section>
+                          <upload></upload>
                         </div>  
                         <div class="page" id="p3">
                           <record></record>
                         </div>
                         <div class="page" id="p4">
-                            <div class="container">
-                                <h1>About us</h1>
-                                <p>text text... blah blah blah</p>
-                            </div>
+                            <aboutUs></aboutUs>
                         </div> 
                       </div>
                     </div>
@@ -42,12 +39,13 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
 import record from './components/record.vue';
+import aboutUs from './components/aboutUs.vue';
+import upload from './components/upload.vue';
 
 export default {
     name: 'layout',
-    components: { Navbar, record},
+    components: { record, aboutUs, upload},
 
     data () {
         return {
