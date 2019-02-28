@@ -1,16 +1,14 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import store from './store.js'
-import router from './routes.js'
 import Layout from './Layout.vue'
 
-Vue.use(VueRouter);
+Vue.use(Vuex)
 
 
 
 new Vue({
   el: '#app',
   render: h => h(Layout),
-  router,
   store
 })

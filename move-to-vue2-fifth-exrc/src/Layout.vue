@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="padding-top:20px">
         <div class="container">
             <div id="flow">
                 <span class="flow-1"></span>
@@ -18,12 +18,11 @@
             <div class="column is-home-right-column" style="background-color:lightgray">
                 <label v-if="!isUpload" @click="isUpload=true"><i class="fa fa-image"></i></label>
             </div>
+            <upload v-if='!isUploaded' @uploaded="setText"></upload>
+            <result v-if='isUploaded' :text='currtext' ></result>
+            <button @click="setStatus(false)" v-if='isUploaded'>העלה תמונה אחרת</button>
         </div>
 
-
-        <div class="container">
-            
-        </div>
 
   </div>
 </template>
@@ -31,10 +30,28 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import record from './components/record.vue';
+import upload from './components/upload.vue';
+import result from './components/result.vue';
+import {mapState,mapActions} from 'vuex';
 
 export default {
+    data() {
+        return {
+            currtext:'hey',
+        }
+    },
+    computed:{
+        ...mapState(['isUploaded']),
+    },
+    methods:{
+        ...mapActions(['setStatus']),
+        setText(text){
+            this.currtext=text;
+        },
+        
+    },
     name: 'layout',
-    components: { Navbar, record},
+    components: { Navbar, record, upload,result},
 
     data () {
         return {

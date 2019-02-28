@@ -3,8 +3,12 @@
         <div class="navbar-brand">
             <div class="navbar-menu">
                 <div class="navbar-start">
+<<<<<<< HEAD
                     <router-link class="navbar-item" to="/">Home</router-link>
                     <router-link class="navbar-item" to="">Map</router-link>
+=======
+                    
+>>>>>>> uploadImg
                 </div>
                 <div class="navbar-end">
                     <clock class="navbar-item"></clock>

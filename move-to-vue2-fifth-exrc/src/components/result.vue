@@ -1,0 +1,101 @@
+<template>
+    <div>
+        <div id="wrapper">
+
+	<form id="paper" method="get" action="">
+		<textarea v-model="text" id="text" name="text" rows="6" style="overflow: auto; word-wrap: soft; resize: both; width: 700px;"></textarea>  		
+	</form>
+
+    </div>
+        <!-- <textarea v-model="text"> -->
+            
+        <!-- </textarea> -->
+    </div>
+</template>
+
+<script>
+import {mapState,mapActions} from 'vuex';
+import VueLoadingButton from 'vue-loading-button';
+
+export default {
+    data() {
+        return {
+            textToPresent:this.text,
+        }
+    },
+    created() {
+        // document.getElementById('#title').focus();
+        // document.getElementById('#text').autosize();
+        // document.getElementById('#text').resizable()
+    },
+    props:['text'],
+    methods: {
+        ...mapActions(['setStatus']),
+      
+    },
+    components: {VueLoadingButton}
+}
+</script>
+<style>
+* {
+  outline:none;
+	border:none;
+	margin:0px;
+	padding:0px;
+	font-family:Courier, monospace;
+}
+#paper {
+	color:#FFF;
+	font-size:20px;
+}
+#margin {
+	margin-left:12px;
+	margin-bottom:20px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none; 
+}
+#text {
+	width:500px;
+	overflow:hidden;
+	background-color:#FFF;
+	color:#222;
+	font-family:Courier, monospace;
+	font-weight:normal;
+	font-size:24px;
+	resize:none;
+	line-height:40px;
+	padding-left:100px;
+	padding-right:100px;
+	padding-top:45px;
+	padding-bottom:34px;
+	background-image:url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+	background-repeat:repeat-y, repeat;
+	-webkit-border-radius:12px;
+	border-radius:12px;
+	-webkit-box-shadow: 0px 2px 14px #000;
+	box-shadow: 0px 2px 14px #000;
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #FFF;
+}
+#title {
+	background-color:transparent;
+	border-bottom:3px solid #FFF;
+	color:#FFF;
+	font-size:20px;
+	font-family:Courier, monospace;
+	height:28px;
+	font-weight:bold;
+	width:220px;
+}
+#wrapper {
+	width:700px;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:24px;
+	margin-bottom:100px;
+}
+</style>
