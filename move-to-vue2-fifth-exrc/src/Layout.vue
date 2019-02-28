@@ -19,7 +19,7 @@
                                         </div>
                                     </div>
                                     
-                           <section class="icon"><img src="./img/logoProjWhite.png" style="height: 200px; width: 200px;"><span class="title">Typing made easy...</span></section>  
+                           <section class="icon"><img src="./img/logoProjWhite.png" style="height: 200px; width: 200px;"><span class="title">Typing has never been so easy...</span></section>  
                         </div>
                         <div class="page" id="p2">
                           <upload></upload>

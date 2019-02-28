@@ -1,6 +1,6 @@
 <template>
     <div>
-        <textarea v-model="text" id="text" name="text" rows="4" style="overflow: auto; word-wrap: soft; resize: both; height: 600px; "></textarea> 
+        <textarea v-model="text" id="text" name="text" rows="4" style="overflow: auto; word-wrap: soft; resize: both; height: 600px; width: 700px; "></textarea> 
     </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     components: {VueLoadingButton}
 }
 </script>
-<style>
+<style scoped>
 textarea {
     margin-top: 10%;
 }

@@ -47,7 +47,7 @@ export default {
         'start': () => {
         this.startRec();
         },
-        'clear': () => {
+        'clean': () => {
         this.clear();
         },
     };
