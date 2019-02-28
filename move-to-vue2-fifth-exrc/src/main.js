@@ -5,6 +5,8 @@ import Layout from './Layout.vue'
 
 Vue.use(Vuex)
 
+
+
 new Vue({
   el: '#app',
   render: h => h(Layout),

@@ -1,0 +1,1 @@
+var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;

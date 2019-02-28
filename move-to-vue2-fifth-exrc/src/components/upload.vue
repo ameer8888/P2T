@@ -1,16 +1,17 @@
 <template>
     <div>
         
-       <input id="image" type="file" @change="savefile" class="inputfile">  
-            <label for="image" v-if="file==''">
-                <i class="fa fa-plus"></i>        
-            </label>
+        <input id="image" type="file" @change="savefile" class="inputfile">  
+            
+        <label for="image" v-if="isChoose"><i class="fa fa-image"></i></label>
+
         <label v-if="file!=''">
             <img v-if="imgToShow != null" :src="imgToShow" /> 
         </label>
 
 
              <VueLoadingButton
+                id="convertToTextBtn"
                 aria-label="Post message"
                 class="button"
                 @click.native="handleClick"
@@ -20,11 +21,16 @@
             >
                  המר תמונה לטקסט
             </VueLoadingButton>
+
+            <result v-if='isUploaded' :text=text ></result>
+            <button @click="setStatus(false); isChoose=true" v-if='isUploaded'>העלה תמונה אחרת</button>
+
     </div>
 </template>
 
 <script>
 import {mapState,mapActions} from 'vuex';
+import result from '../components/result.vue';
 import VueLoadingButton from 'vue-loading-button';
 
 (function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);
@@ -36,16 +42,21 @@ export default {
             currText:'',
             file:'',
             imgToShow : null,
-            image : null
+            image : null,
+            text:'',
+            isChoose:true,
 
         }
     },
     computed: {   
-
+        ...mapState(['isUploaded']),
     },
-    components: {VueLoadingButton},
+    components: {result,VueLoadingButton},
     methods: {
         ...mapActions(['setStatus']),
+        setText(text){
+            this.currtext=text;
+        },
         handleClick() {
             this.isLoading = true;
             this.onUpload();
@@ -53,6 +64,7 @@ export default {
         },
         savefile(event){
             this.imgToShow = null;
+            
             this.file = event.target.files[0];
             this.image = new image_handller(this.file);
             this.image.on_load = () => 
@@ -79,6 +91,7 @@ export default {
                 this.image.to_bw(255 - this.image.stats().avg_r);
                 this.imgToShow = this.image.to_canvas().toDataURL();
             }
+            this.isChoose = false;
             
         },
         onUpload() {
@@ -88,10 +101,10 @@ export default {
                 
                 this.isLoading = false;
                 console.log(res);
-                const text = res.text;
-                this.currText = text;
+                this.text = res.text;
+                this.currText = this.text;
                 this.setStatus(true);
-                this.$emit('uploaded',text);
+                this.file = '';
             });
             
         },
@@ -118,12 +131,18 @@ export default {
 	position: absolute;
 	z-index: -1;
 }
-    .inputfile + label {
+    .inputfile{
     font-size: 100px;
     font-weight: 700;
     color: lightgreen;
     background-color: white;
     display: inline-block;
+}
+
+label {
+    font-size: 320px;
+    margin-top: 250px;
+    margin-left: 350px;
 }
 
 .inputfile + label {
@@ -146,5 +165,23 @@ export default {
 
 .no-js .inputfile + label {
     display: none;
+}
+
+button {
+    margin-top: 24px;
+}
+
+.button {
+    padding-right: 20%!important;
+    padding-left: 20%!important;
+    margin-left: 20%!important;
+}
+
+img {
+    padding-right: 50%;
+}
+
+#convertToTextBtn {
+    padding-right: 50px;
 }
 </style>
