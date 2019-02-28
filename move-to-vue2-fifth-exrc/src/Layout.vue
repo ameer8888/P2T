@@ -8,7 +8,7 @@
                             <a href="#t1"><img src="./img/logo.png"></a><br>
                             <a href="#t2"><img src="./img/P2T.png"></a><br>
                             <a href="#t3"><img src="./img/S2t.png"></a><br>
-                            <a href="#t4"><img src="./img/logo.png"></a><br>
+                            <a href="#t4"><img src="./img/question.png"></a><br>
                         </ul>
                         <div class="page" id="p1">
                                 <div class="container">
@@ -18,7 +18,8 @@
                                             <span class="flow-3"></span>
                                         </div>
                                     </div>
-                           <section class="icon fa fa-bolt"><span class="title">Bolt</span><span class="hint">Like this pen to see the magic!...<br> Just kidding, it won't happen anything but I'll be really happy If you do so.</span></section>  
+                                    
+                           <section class="icon"><img src="./img/logoProjWhite.png" style="height: 200px; width: 200px;"><span class="title">Typing made easy...</span></section>  
                         </div>
                         <div class="page" id="p2">
                           <section class="icon fa fa-keyboard-o"><span class="title">Type</span></section>
@@ -54,13 +55,13 @@ export default {
             isUpload : false, 
         }
     }, 
-
 }
 </script>
 <style>
 img {
     height: 90px;
     width: 90px;
+    padding: 10px;
 }
 
 .column {
@@ -96,14 +97,14 @@ html, body, .page {
   left: 0;
 }
 
-#p2, #p3, #p4, #p5 {
+#p2, #p3, #p4 {
   left: 200%;
 }
 
 #p1 { background: black; }
 #p2 { background: rgb(45, 180, 117); }
 #p3 { background: rgb(77, 53, 121); }
-#p4 { background: darksalmon; }
+#p4 { background: rgb(156, 43, 58); }
 
 #t2:target #p2,
 #t3:target #p3,
@@ -167,7 +168,7 @@ ul img:hover {
 ul {
   position: fixed;
   z-index: 1;
-  top: 150px;
+  top: 175px;
   left: 0;
   margin: auto;
   height: 280px;
@@ -189,7 +190,7 @@ a {
 }
 
 .hint {
-  font-size: 13px;
+  font-size: 20px;
 }
 
 #p4 .hint {
