@@ -1,7 +1,6 @@
 <template>
   <div id="app" style="padding-top:20px">
         <div class="container">
-            
             <upload v-if='!isUploaded' @uploaded="setText"></upload>
             <result v-if='isUploaded' :text='currtext' ></result>
             <button @click="setStatus(false)" v-if='isUploaded'>העלה תמונה אחרת</button>
@@ -34,5 +33,5 @@ export default {
     name: 'layout',
     components: { Navbar, upload,result}
 }
-</script>
 
+</script>

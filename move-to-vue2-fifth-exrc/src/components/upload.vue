@@ -75,7 +75,7 @@ export default {
                     scale = 0.7
                 }
                 this.image.scale(scale,scale);
-                this.image.to_gray()
+                this.image.to_gray();
                 this.image.to_bw(255 - this.image.stats().avg_r);
                 this.imgToShow = this.image.to_canvas().toDataURL();
             }
@@ -92,7 +92,6 @@ export default {
                 this.currText = text;
                 this.setStatus(true);
                 this.$emit('uploaded',text);
-
             });
             
         },
