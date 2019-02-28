@@ -1,6 +1,12 @@
 <template>
     <div>
-        
+        <select class="browser-default custom-select" v-model="language">
+            <option disabled value="">Please select a language</option>
+            <option>English</option>
+            <option>Hebrew</option>
+            <option>English and Hebrew</option>
+        </select>
+
         <input id="image" type="file" @change="savefile" class="inputfile">  
             
         <label for="image" v-if="isChoose"><i class="fa fa-image"></i></label>
@@ -45,6 +51,7 @@ export default {
             image : null,
             text:'',
             isChoose:true,
+            language: ""
 
         }
     },
@@ -87,8 +94,9 @@ export default {
                     scale = 0.7
                 }
                 this.image.scale(scale,scale);
-                this.image.to_gray();
-                this.image.to_bw(255 - this.image.stats().avg_r);
+
+                this.image.to_gray()
+                this.image.to_bw(this.image.stats().ultimateAvg);
                 this.imgToShow = this.image.to_canvas().toDataURL();
             }
             this.isChoose = false;
@@ -97,12 +105,12 @@ export default {
         onUpload() {
             
             const comprassedFile = this.image.to_canvas();
-            this.convertToText(comprassedFile, (res) => {
+            this.convertToText(comprassedFile, (text,res) => {
                 
                 this.isLoading = false;
                 console.log(res);
-                this.text = res.text;
-                this.currText = this.text;
+                this.text = text;
+
                 this.setStatus(true);
                 this.file = '';
             });
@@ -112,17 +120,26 @@ export default {
             return img;
         },
         convertToText(img,cb) {
-            
-            Tesseract.recognize(img)
-            .then(function(result){
-                cb(result)
-            });
+            const lang = [];
+            if (this.language === "English") {
+                console.log("eng");
+                lang.push('eng');
+            } else if (this.language === "Hebrew") {
+                lang.push('heb');
+            } else {
+                lang.push('eng','heb');
+            }
+			load_tesseract(img,{langs : lang, merge : true, threshold : 75},cb);
         }
 
     }
 }
 </script>
 <style>
+.browser-default {
+    margin-top: 5%;
+}
+
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;
@@ -146,7 +163,7 @@ label {
 }
 
 .inputfile + label {
-	cursor: pointer; /* "hand" cursor */
+	cursor: pointer; 
 }
 
 .inputfile:focus + label,

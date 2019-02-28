@@ -14,6 +14,11 @@ export default {
             textToPresent:this.text,
         }
     },
+    created() {
+        // document.getElementById('#title').focus();
+        // document.getElementById('#text').autosize();
+        // document.getElementById('#text').resizable()
+    },
     props:['text'],
     methods: {
         ...mapActions(['setStatus']),
@@ -26,8 +31,9 @@ export default {
 textarea {
     margin-top: 10%;
 }
-    * {
-  outline:none;
+
+* {
+    outline:none;
 	border:none;
 	margin:0px;
 	padding:0px;
@@ -36,6 +42,7 @@ textarea {
 body {
 	background:#333 url(https://static.tumblr.com/maopbtg/a5emgtoju/inflicted.png) repeat;        
 }
+
 #paper {
 	color:#FFF;
 	font-size:20px;

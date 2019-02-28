@@ -20,7 +20,7 @@
             <div class="column is-home-right-column" style="background-color:lightgray">
                 
                 <div>
-                    <upload v-if="isUpload" @click="isUpload=false"><i class="fa fa-image"></i></upload>
+                    <upload v-if="isUpload" @click="isUpload=false"></upload>
                   
                 </div>
             </div>
