@@ -3,8 +3,16 @@
         
        <input id="image" type="file" @change="savefile" class="inputfile">  
             <label for="image" v-if="file==''">
-                <i class="fa fa-plus"></i>        
+                <!-- <i class="fa fa-plus"></i>   -->
+                <img src="../assets/upload.png">      
             </label>
+            <select class="browser-default custom-select" v-model="language">
+                <option disabled value="">Please select a language</option>
+                <option>English</option>
+                <option>Hebrow</option>
+                <option>English and Hebrow</option>
+            </select>
+
         <label v-if="file!=''">
             <img v-if="imgToShow != null" :src="imgToShow" /> 
         </label>
@@ -36,7 +44,8 @@ export default {
             currText:'',
             file:'',
             imgToShow : null,
-            image : null
+            image : null,
+            language: ""
 
         }
     },
@@ -76,7 +85,7 @@ export default {
                 }
                 this.image.scale(scale,scale);
                 this.image.to_gray()
-                this.image.to_bw(255 - this.image.stats().avg_r);
+                this.image.to_bw(this.image.stats().ultimateAvg);
                 this.imgToShow = this.image.to_canvas().toDataURL();
             }
             
@@ -84,11 +93,10 @@ export default {
         onUpload() {
             
             const comprassedFile = this.image.to_canvas();
-            this.convertToText(comprassedFile, (res) => {
+            this.convertToText(comprassedFile, (text,res) => {
                 
                 this.isLoading = false;
                 console.log(res);
-                const text = res.text;
                 this.currText = text;
                 this.setStatus(true);
                 this.$emit('uploaded',text);
@@ -100,11 +108,16 @@ export default {
             return img;
         },
         convertToText(img,cb) {
-            
-            Tesseract.recognize(img)
-            .then(function(result){
-                cb(result)
-            });
+            const lang = [];
+            if (this.language === "English") {
+                console.log("eng");
+                lang.push('eng');
+            } else if (this.language === "Hebrow") {
+                lang.push('heb');
+            } else {
+                lang.push('eng','heb');
+            }
+			load_tesseract(img,{langs : lang, merge : true, threshold : 75},cb);
         }
 
     }
@@ -128,7 +141,7 @@ export default {
 }
 
 .inputfile + label {
-	cursor: pointer; /* "hand" cursor */
+	cursor: pointer; 
 }
 
 .inputfile:focus + label,

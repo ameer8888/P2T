@@ -115,19 +115,35 @@ function image_handller(file,w_scale,h_scale)
 
 	this.stats = () => 
 	{
+		let greatest = 0;
+		let smallest = 1000;
+		let tempSum = 0
 		var stat_obj = {};
 		stat_obj.sum_r = 0;
+		stat_obj.ultimateAvg = 0
 		stat_obj.sum_g = 0;
 		stat_obj.sum_b = 0;
 		//let grayScale = [];
 		this.foreach((row,col,pixel) =>
 		{
+			tempSum = 0;
+			tempSum += pixel.r;
+			tempSum += pixel.g;
+			tempSum += pixel.b;
+			tempSum /= 3;
 			stat_obj.sum_r += pixel.r;
 			stat_obj.sum_g += pixel.g;
 			stat_obj.sum_b += pixel.b;
 			//grayScale.push(pixel.r);
+			if (tempSum > greatest) {
+				greatest = tempSum;
+			}
+			if (tempSum < smallest) {
+				smallest = tempSum;
+			}
 		});
 		
+		stat_obj.ultimateAvg = (greatest + smallest) / 2;
 		//grayScale.sort();
 
 		//stat_obj.center = grayScale[grayScale.length/2];
